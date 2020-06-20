@@ -1,90 +1,64 @@
-const express=require("express")
-const ejs=require("ejs")
-const mongoose=require("mongoose")
-const bcrypt=require("bcrypt")
-const saltRounds=10;
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
+const app = express();
 
+// Passport Config
+require('./config/passport')(passport);
 
-const app=express()
+// DB Config
+const db = require('./config/keys').mongoURI;
 
+// Connect to MongoDB
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true ,useUnifiedTopology: true}
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+//custom styles
 app.use(express.static("public"))
-app.use(express.urlencoded({extended:false}))
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
 
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
 
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
+// Connect flash
+app.use(flash());
 
-mongoose.connect("mongodb://localhost:27017/reflect",{
-	useNewUrlParser:true,
-	useUnifiedTopology:true
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
-})
+// Routes
+app.use('/', require('./routes/index.js'));
+app.use('/users', require('./routes/users.js'));
+app.use("/articles",require('./routes/articles.js'))
 
-const userSchema=new mongoose.Schema({
-	email:String,
-	password:String,
-	name:String
-})
+const PORT = process.env.PORT || 3000;
 
-
-const User=mongoose.model("user",userSchema)
-
-
-app.get("/",(req,res)=>{
-	res.render("stylehome.ejs")
-})
-
-app.post("/",(req,res)=>{
-	let name=req.body.username;
-	let email=req.body.email
-	let password=req.body.password
-
-	bcrypt.hash(password, saltRounds, function(err, hash) {
-    const newUser=new User({
-    	name:name,
-    	email:email,
-    	password:hash
-    })
-    newUser.save()
-    res.send("Successfully Saved")
-})
-
-})
-
-
-app.get("/login",(req,res)=>{
-	res.render("stylelogin.ejs")
-})
-
-app.post("/login",(req,res)=>{
-	let email=req.body.email
-	let password=req.body.password
-	User.findOne({email:email},function(err,foundItem){
-		if(!err){
-			if(foundItem){
-				bcrypt.compare(password, foundItem.password, function(err, result) {
-   					if(result){
-   						res.render("dashboard.ejs",{name:foundItem.name})
-   					}
-   					else{
-   						res.send("Wrong password")
-
-   					}
-				})
-			}
-			else{
-				res.send("No user  found..")
-			}
-		}
-
-	})
-
-
-})
-
-
-
-
-app.listen(3000,
-	console.log("Server is running.."))
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
