@@ -1,24 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose=require("mongoose")
+const bcrypt=require("bcrypt")
+mongoose.set('useCreateIndex', true);
 
-const UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
-});
+const userSchema=new mongoose.Schema({
+	username:{
+		type:String,
+		required:true
+	},
+	email:{
+		type:String,
+		required:true,
+		unique:true
+	},
+	password:{
+		type:String,
+		required:true
+	}
+})
 
-const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+
+
+module.exports=mongoose.model("user",userSchema)

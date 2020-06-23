@@ -1,60 +1,86 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus"></i> Register
-      </h1>
-      <% include ./partials/messages %>
-      <form action="/users/register" method="POST">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            class="form-control"
-            placeholder="Enter Name"
-            value="<%= typeof name != 'undefined' ? name : '' %>"
-          />
+<%-include("partials/header.ejs")%>
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('/img/register-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Register here</h1>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Create Password"
-            value="<%= typeof password != 'undefined' ? password : '' %>"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password2">Confirm Password</label>
-          <input
-            type="password"
-            id="password2"
-            name="password2"
-            class="form-control"
-            placeholder="Confirm Password"
-            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">
-          Register
-        </button>
-      </form>
-      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+      </div>
     </div>
-  </div>
+  </header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<%-include("partials/messages.ejs")%>
+			<form action="/users/registernew" method="post" encType="multipart/form-data">
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Username</label>
+							<input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value="<%= typeof username != 'undefined' ? username : '' %>"
+              class="form-control">
+
+							</input>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Email</label>
+							<input type="email"
+              name="email"
+              placeholder="Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+              class="form-control">
+
+							</input>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Password</label>
+							<input type="password"
+              name="password"
+              placeholder="Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+              class="form-control">
+
+							</input>
+						</div>
+					</div>
+						<div class="control-group">
+						<div class="form-group floating-label-form-group controls">
+							<label>Confirm Password</label>
+							<input type="password"
+              name="password2"
+              placeholder="Confirm Password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+              class="form-control">
+
+							</input>
+						</div>
+					</div>
+
+
+
+
+				<div class="form-group my-4 text-center">
+
+					<button class="btn btn-primary">Register</button>
+				</div>
+			</form>
+
+
+
+		</div>
+	</div>
 </div>
+
+<%-include("partials/footer.ejs")%>
