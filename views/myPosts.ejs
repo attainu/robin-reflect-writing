@@ -8,8 +8,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1>REFLECT WRITING</h1>
-            <span class="subheading">The internet has no eraser</span>
+            <h1>MY posts</h1>
           </div>
         </div>
       </div>
@@ -20,20 +19,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <% arr.forEach(function(post){ %>
+        <% posts.forEach(function(post){ %>
             <div class="post-preview">
 
-              <a href="/post/<%=post.post._id%>">
+              <a href="/post/<%=post._id%>">
                 <h2 class="post-title">
-                  <%= post.post.title%>
+                  <%= post.title%>
                 </h2>
                 <h3 class="post-subtitle">
-                  <%=post.post.subtitle%>
+                  <%=post.subtitle%>
                 </h3>
               </a>
-              <p class="post-meta">Posted by
-                <a href="#"><%=post.authordetail.username%></a>
-                on <%=post.post.createdAt.toDateString()%>
+              <p class="post-meta">Posted at
+                <%=post.createdAt.toDateString()%>
               </p>
           </div>
           <hr>

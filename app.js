@@ -17,6 +17,7 @@ const storeRegisterController = require("./controllers/storeRegister")
 const userLoginController = require("./controllers/login")
 const userLoginCheck = require("./controllers/logincheck")
 const logOutController=require("./controllers/logout")
+const myPostsController=require("./controllers/myPosts")
 
 
 const app = express()
@@ -52,14 +53,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-
-
-
-
-
-
-
 app.set("view engine", "ejs")
 app.use(fileUpload())
 app.use(express.static("public"))
@@ -69,9 +62,7 @@ app.use("*",(req,res,next)=>{
   next()
 })
 
-app.use(express.urlencoded({
-  extended: true
-}))
+app.use(express.urlencoded({extended: true}))
 
 
 const createPostMiddleware = require("./middlewares/createPostMiddleware")
@@ -87,8 +78,8 @@ app.get("/users/login", redirectIfAuth,userLoginController)
 app.post("/users/login",redirectIfAuth, userLoginCheck)
 app.get("/users/register", redirectIfAuth,userRegisterController)
 app.post("/users/registernew",redirectIfAuth, storeRegisterController)
+app.get("/users/myposts",auth,myPostsController)
 app.use((req, res) => res.render('notfound'));
-
 
 
 const port = process.env.PORT || 3000

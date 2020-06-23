@@ -5,6 +5,7 @@ module.exports=(req, res, next) => {
     if (error || !foundUser) {
       return res.redirect("/users/login")
     }
+
     next()
   })
   //verify user
