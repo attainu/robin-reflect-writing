@@ -13,7 +13,7 @@ const connectMongo = require("connect-mongo")
 const app = express()
 
 mongoose.connect(
-  process.env.MONGO_URI, {useNewUrlParser: true,useUnifiedTopology: true}
+  process.env.MONGO_LOCAL_URI, {useNewUrlParser: true,useUnifiedTopology: true}
 )
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
@@ -72,6 +72,7 @@ const myPostsController=require("./controllers/myPosts")
 const deletePostController=require("./controllers/deletepost")
 const editPostController=require("./controllers/editpost")
 const saveEditChanges=require("./controllers/saveEditchanges")
+const DeleteAccount=require("./controllers/deleteAcc")
 
 
 
@@ -92,6 +93,7 @@ app.get("/users/myposts",auth,myPostsController)
 app.get("/delete/:id",auth,deletePostController)
 app.get("/edit/:id",auth,editPostController)
 app.put("/editpost/:id",auth,saveEditChanges)
+app.get("/account/delete",auth,DeleteAccount)
 app.use((req, res) => res.render('notfound'));
 
 
