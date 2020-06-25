@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1>My Public Posts</h1>
+            <h1>My Private Posts</h1>
           </div>
         </div>
       </div>
@@ -19,22 +19,22 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <% posts.forEach(function(post){ %>
+        <% articles.forEach(function(article){ %>
             <div class="post-preview">
 
-              <a href="/post/<%=post._id%>">
+              <a href="/ppost/<%=article._id%>">
                 <h2 class="post-title">
-                  <%= post.title%>
+                  <%= article.title%>
                 </h2>
                 <h3 class="post-subtitle">
-                  <%=post.subtitle%>
+                  <%=article.subtitle%>
                 </h3>
               </a>
               <p class="post-meta">Posted at
-                <%=post.createdAt.toDateString()%>
+                <%=article.createdAt.toDateString()%>
               </p>
-              <a class="btn btn-warning" href="/edit/<%=post._id%>">Edit</a>
-              <a class="btn btn-danger" href="/delete/<%=post._id%>">Delete</a>
+              <a class="btn btn-warning" href="/pedit/<%=article._id%>">Edit</a>
+              <a class="btn btn-danger" href="/pdelete/<%=article._id%>">Delete</a>
           </div>
           <hr>
 

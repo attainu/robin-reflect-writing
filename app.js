@@ -62,17 +62,27 @@ app.use("*",(req,res,next)=>{
 const createPostController = require("./controllers/createPost")
 const storePostController = require("./controllers/storePost")
 const homePageController = require("./controllers/homePage")
-const singlePostController = require("./controllers/singlePost")
 const userRegisterController = require("./controllers/userRegister")
 const storeRegisterController = require("./controllers/storeRegister")
 const userLoginController = require("./controllers/login")
 const userLoginCheck = require("./controllers/logincheck")
 const logOutController=require("./controllers/logout")
+
+const singlePostController = require("./controllers/singlePost")
 const myPostsController=require("./controllers/myPosts")
 const deletePostController=require("./controllers/deletepost")
 const editPostController=require("./controllers/editpost")
 const saveEditChanges=require("./controllers/saveEditchanges")
-const DeleteAccount=require("./controllers/deleteAcc")
+
+const privateSinglePost=require("./controllers/privateSinglePost")
+const privatePosts=require("./controllers/privatePosts")
+const privateDeletePost=require("./controllers/privateDeletePost")
+const privateEditPost=require("./controllers/privateEditPost")
+const privateSaveEditChanges=require("./controllers/privateSaveEditChanges")
+
+
+const deleteAccount=require("./controllers/deleteAcc")
+
 
 
 
@@ -85,15 +95,22 @@ app.get("/post/:id", singlePostController)
 app.get("/users/logout",auth,logOutController)
 app.get("/posts/new", auth, createPostController)
 app.post("/posts/store", auth, createPostMiddleware, storePostController)
+
+app.get("/ppost/:id",auth,privateSinglePost)
+app.get("/users/privateposts",auth,privatePosts)
+app.get("/pdelete/:id",auth,privateDeletePost)
+app.get("/pedit/:id",auth,privateEditPost)
+app.put("/peditpost/:id",auth,privateSaveEditChanges)
+
 app.get("/users/login", redirectIfAuth,userLoginController)
 app.post("/users/login",redirectIfAuth, userLoginCheck)
 app.get("/users/register", redirectIfAuth,userRegisterController)
 app.post("/users/registernew",redirectIfAuth, storeRegisterController)
-app.get("/users/myposts",auth,myPostsController)
+app.get("/users/publicposts",auth,myPostsController)
 app.get("/delete/:id",auth,deletePostController)
 app.get("/edit/:id",auth,editPostController)
 app.put("/editpost/:id",auth,saveEditChanges)
-app.get("/account/delete",auth,DeleteAccount)
+app.get("/account/delete",auth,deleteAccount)
 app.use((req, res) => res.render('notfound'));
 
 
