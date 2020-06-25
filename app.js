@@ -85,7 +85,8 @@ const deleteAccount=require("./controllers/deleteAcc")
 
 
 
-
+//middlewares
+const matchauth=require("./middlewares/matchauth")
 const createPostMiddleware = require("./middlewares/createPostMiddleware")
 const auth = require("./middlewares/auth")
 const redirectIfAuth=require("./middlewares/redirectIfAuth")
@@ -107,9 +108,9 @@ app.post("/users/login",redirectIfAuth, userLoginCheck)
 app.get("/users/register", redirectIfAuth,userRegisterController)
 app.post("/users/registernew",redirectIfAuth, storeRegisterController)
 app.get("/users/publicposts",auth,myPostsController)
-app.get("/delete/:id",auth,deletePostController)
-app.get("/edit/:id",auth,editPostController)
-app.put("/editpost/:id",auth,saveEditChanges)
+app.get("/delete/:id",matchauth,deletePostController)
+app.get("/edit/:id",matchauth,editPostController)
+app.put("/editpost/:id",matchauth,saveEditChanges)
 app.get("/account/delete",auth,deleteAccount)
 app.use((req, res) => res.render('notfound'));
 
