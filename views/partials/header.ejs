@@ -53,15 +53,21 @@
             <!-- <li class="nav-item">
               <a class="nav-link" href="/users/myposts">My Posts</a>
             </li> -->
-            <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- <div class="dropdown">
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     My Posts
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="/users/publicposts">Public Posts</a>
     <a class="dropdown-item" href="/users/privateposts">Private Posts</a>
   </div>
-</div>
+</div> -->
+<li class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">My Posts <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class="nav-link"><a href="/users/publicposts">Pubic Posts</a></li>
+          <li class="nav-link"><a href="/users/privateposts">Private Posts</a></li>
+        </ul>
+      </li>
 
 
 
