@@ -5,14 +5,27 @@ const Post=require("../models/post")
 module.exports=(req,res,next)=>{
 	Post.findOne({_id:req.params.id},(err,foundPost)=>{
 		if(err){
-			res.redirect("/")
+			return res.redirect("/")
 		}
 		else{
-			if(foundPost.author==req.session.userId){
+			if(!req.session.userId){
+				return res.redirect("/users/login")
+			}
+			else if(foundPost.author==req.session.userId){
 				next()
 			}
+
 			else{
-				res.redirect("/")
+				User.findById(req.session.userId,(err,user)=>{
+					if(err){
+						return res.redirect("/users/login")
+					}
+					else {
+						return res.render("trysmart",{user})
+					}
+				})
+				
+
 			}
 		}
 	})

@@ -7,8 +7,11 @@ const path=require("path")
 
 module.exports=(req,res)=>{
 	const {image} =req.files
+	if( req.files.image.mimetype.includes("image")==false){
+		req.flash("error_msg","Please Upload an Image")
+		return res.redirect("/posts/new")
+	}
 	const myPath = path.resolve(__dirname,'..','public/uploads',image.name)
-	console.log(myPath)
 	image.mv(myPath,(error)=>{
 		cloudinary.uploader.upload(myPath,(err,result)=>{
 

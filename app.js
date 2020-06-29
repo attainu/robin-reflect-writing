@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 const express = require("express")
 const ejs = require("ejs")
 const cloudinary=require("cloudinary").v2
@@ -13,7 +13,7 @@ const connectMongo = require("connect-mongo")
 const app = express()
 
 mongoose.connect(
-  process.env.MONGO_LOCAL_URI, {useNewUrlParser: true,useUnifiedTopology: true}
+  process.env.MONGO_URI, {useNewUrlParser: true,useUnifiedTopology: true}
 )
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
@@ -67,6 +67,7 @@ const storeRegisterController = require("./controllers/storeRegister")
 const userLoginController = require("./controllers/login")
 const userLoginCheck = require("./controllers/logincheck")
 const logOutController=require("./controllers/logout")
+const myprofile=require("./controllers/myprofile")
 
 const singlePostController = require("./controllers/singlePost")
 const myPostsController=require("./controllers/myPosts")
@@ -88,6 +89,7 @@ const deleteAccount=require("./controllers/deleteAcc")
 //middlewares
 const matchauth=require("./middlewares/matchauth")
 const createPostMiddleware = require("./middlewares/createPostMiddleware")
+const editPostMiddleware = require("./middlewares/editPostMiddleware")
 const auth = require("./middlewares/auth")
 const redirectIfAuth=require("./middlewares/redirectIfAuth")
 
@@ -101,7 +103,7 @@ app.get("/ppost/:id",auth,privateSinglePost)
 app.get("/users/privateposts",auth,privatePosts)
 app.get("/pdelete/:id",auth,privateDeletePost)
 app.get("/pedit/:id",auth,privateEditPost)
-app.put("/peditpost/:id",auth,privateSaveEditChanges)
+app.put("/peditpost/:id",auth,editPostMiddleware,privateSaveEditChanges)
 
 app.get("/users/login", redirectIfAuth,userLoginController)
 app.post("/users/login",redirectIfAuth, userLoginCheck)
@@ -110,8 +112,9 @@ app.post("/users/registernew",redirectIfAuth, storeRegisterController)
 app.get("/users/publicposts",auth,myPostsController)
 app.get("/delete/:id",matchauth,deletePostController)
 app.get("/edit/:id",matchauth,editPostController)
-app.put("/editpost/:id",matchauth,saveEditChanges)
+app.put("/editpost/:id",matchauth,editPostMiddleware,saveEditChanges)
 app.get("/account/delete",auth,deleteAccount)
+app.get("/users/myprofile",auth,myprofile)
 app.use((req, res) => res.render('notfound'));
 
 
