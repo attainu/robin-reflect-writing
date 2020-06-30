@@ -29,6 +29,16 @@ User can delete his entire account(which deletes all of his public and private p
 
 ## How to use
 
-1. #### Home page:
-  It's a place where all the published posts are there
- 
+1. #### Home page:It's a place where all the published posts are there
+2. #### Newpost: It is used to pubish a new post.(user must be logged into publish a new post)
+3. #### Register: Used for registration of the user
+4. #### Login: Used for login ..
+5. After logging in , the user can see a tab named Myposts(which contains public posts and private posts)
+6. User can publish a new post using new post tab..
+  - Each Post contains
+    - Title , subtitle, content and image 
+    - also an  option to save it to public or private...
+
+    
+
+
