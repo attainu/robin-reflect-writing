@@ -29,6 +29,6 @@ User can delete his entire account(which deletes all of his public and private p
 
 ## How to use
 
-1. ####Home page:
+1. #### Home page:
   It's a place where all the published posts are there
  
