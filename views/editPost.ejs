@@ -1,0 +1,58 @@
+<%-include("partials/header.ejs")%>
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/createPost-bg.jpeg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Edit the Post</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form action="/editpost/<%=post._id%>?_method=PUT" method="post" encType="multipart/form-data">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Title</label>
+            <input
+            type="text"
+            name="title"
+            placeholder="Title" value="<%=post.title%>"
+            class="form-control">
+            </input>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Subtitle</label>
+            <input
+            type="text"
+            name="subtitle"
+            placeholder="Subtitle" value="<%=post.subtitle%>"
+            class="form-control">
+            </input>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Content</label>
+            <textarea name="content" placeholder="Content.." cols="30" rows="10"
+            class="form-control"><%=post.content%></textarea>
+          </div>
+        </div>
+        <div class="form-group my-4 text-center">
+          <button class="btn btn-success">Save Changes</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<%-include("partials/footer.ejs")%>

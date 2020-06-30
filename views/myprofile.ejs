@@ -1,0 +1,44 @@
+<%-include("partials/header.ejs") %>
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>My Profile</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+
+		<table class="table table-success">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%=user.username%></td>
+      <td><%=user.email%></td>
+    </tr>
+  </tbody>
+</table>
+
+<a class="btn btn-danger" href="/account/delete">Delete Account</a>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<%-include("partials/footer.ejs")%>
