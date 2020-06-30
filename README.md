@@ -28,7 +28,7 @@ User can delete his entire account(which deletes all of his public and private p
 
 
 ## How to use
-1. User can download or clone the repository and install all the dependencies using "npm install"
-2. type "npm start" to start the app..
-Note: We must have all the values inside the .env file... 
+
+1. ####Home page:
+  It's a place where all the published posts are there
  
