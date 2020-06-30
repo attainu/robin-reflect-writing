@@ -4,6 +4,8 @@ It’s a place where anyone can publish an article. When article is made private
 he or she can save his work so no one can access. It becomes a private Dairy here. Easy to Edit his post or delete his post which is just a click away.  
 Along with the article there is also a image associated with it, so the reading looks more pleasant and joyful.
 
+##Deployed Heroku Link: https://reflect-writing.herokuapp.com/
+
 ## Key Features:
 
 User can read all the Public articles
