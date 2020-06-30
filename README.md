@@ -16,17 +16,17 @@ User can delete his entire account(which deletes all of his public and private p
 
 ## Technologies Used:
 
-Node JS
-Mongo DB Atlas (or )Elephant SQL
-Express
-Heroku(for Deployment Purpose)
-HTML/CSS/Bootstrap
-Cloudinary
-Mongoose (or) Sequelize
+- Node JS
+- Mongo DB Atlas (or )Elephant SQL
+- Express
+- Heroku(for Deployment Purpose)
+- HTML/CSS/Bootstrap
+- Cloudinary
+- Mongoose (or) Sequelize
 
 
 ## How to use
-1.User can download or clone the repository and install all the dependencies using "npm install"
-2.type "npm start" to start the app..
+1. User can download or clone the repository and install all the dependencies using "npm install"
+2. type "npm start" to start the app..
 Note: We must have all the values inside the .env file... 
  
