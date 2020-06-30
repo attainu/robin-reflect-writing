@@ -39,8 +39,7 @@ User can delete his entire account(which deletes all of his public and private p
     - Title , subtitle, content and image 
     - also an  option to save it to public or private...
 7. #### User can edit (or)  delete his both public and private articles...
-8. #### There is also an option to delete the entire account which deletes both his public and private posts and his entire account. He no more has access to any of
-        his articles
+8. #### There is also an option to delete the entire account which deletes both his public and private posts and his entire account. He no more has access to any of his articles
 
     
 
